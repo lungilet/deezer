@@ -1,0 +1,40 @@
+<section class="artist-details" *ngIf="artistData && hideDetails">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img [src]="artistData.picture_big" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Top tracks</h5>
+                <footer class="blockquote-footer">{{ artistData.nb_fan }} <cite title="Source Title">Fans</cite>
+                </footer>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" *ngFor="let item of topTracks; let i = index">{{ i + 1 }}.
+                    {{ item.title }}</li>
+                </ul>
+                <a routerLink="/" class="card-link">back</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row album-section">
+          <h5 class="card-title">Albums</h5>
+          <div class="col" *ngFor="let item of topTracks">
+            <div class="card h-100">
+              <img [src]="item.album.cover_medium" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.album.title }}</h5>
+                <small class="text-muted"><a routerLink="/album/{{ item.album.id }}" class="card-link">View
+                    album</a></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
